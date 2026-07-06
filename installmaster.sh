@@ -1110,6 +1110,78 @@ PHPJOB;
     }
 
     /**
+     * Deteksi konflik antar proteksi yang saling overlap.
+     * Mengembalikan array konflik: [ [protectA, protectB, deskripsi], ... ]
+     */
+    private function detectConflicts(array $config): array
+    {
+        $conflicts = [];
+        $protections = $config['protections'] ?? [];
+
+        // Helper: cek apakah proteksi di-enable
+        $isEnabled = function (string $key) use ($protections): bool {
+            return ($protections[$key]['enabled'] ?? false) === true;
+        };
+
+        // KONFLIK 1: protect3 vs protect12 (Locations)
+        // protect3: REPLACE seluruh LocationController (destructive)
+        // protect12 BAGIAN 5: Inject proteksi ke LocationController + sidebar
+        if ($isEnabled('protect3') && $isEnabled('protect12')) {
+            $conflicts[] = [
+                'protects' => ['protect3', 'protect12'],
+                'severity' => 'warning',
+                'description' => 'protect3 (Anti Akses Location) dan protect12 (Konsolidasi) keduanya memodifikasi LocationController. protect3 mengganti SELURUH file (destructive), protect12 hanya inject check. Rekomendasi: disable protect3, gunakan protect12 saja.',
+            ];
+        }
+
+        // KONFLIK 2: protect4 vs protect12 (Nodes)
+        // protect4: REPLACE seluruh NodeController (hanya menyisakan method index())
+        // protect12 BAGIAN 1: Inject proteksi ke NodeController, NodeViewController, + sidebar
+        if ($isEnabled('protect4') && $isEnabled('protect12')) {
+            $conflicts[] = [
+                'protects' => ['protect4', 'protect12'],
+                'severity' => 'warning',
+                'description' => 'protect4 (Anti Akses Nodes) dan protect12 (Konsolidasi) keduanya memodifikasi NodeController. protect4 mengganti SELURUH file (hanya menyisakan method index), protect12 inject ke semua method + sidebar. Rekomendasi: disable protect4, gunakan protect12 saja.',
+            ];
+        }
+
+        // KONFLIK 3: protect10 vs protect11 (Anti Tautan Server)
+        // Keduanya REPLACE resources/views/admin/servers/index.blade.php
+        if ($isEnabled('protect10') && $isEnabled('protect11')) {
+            $conflicts[] = [
+                'protects' => ['protect10', 'protect11'],
+                'severity' => 'warning',
+                'description' => 'protect10 (Anti Tautan v1) dan protect11 (Anti Tautan v2) keduanya mengganti file index.blade.php yang SAMA. Yang terakhir di-install akan menimpa sebelumnya. Rekomendasi: pilih salah satu (protect11 = versi terbaru).',
+            ];
+        }
+
+        // KONFLIK 4: protect12 vs protect13 (Application API - partial overlap)
+        // protect12 BAGIAN 3: Form Request + Middleware + Controller proteksi untuk API User
+        // protect13: Sidebar menu hiding + ApiController block + API UserController block
+        if ($isEnabled('protect12') && $isEnabled('protect13')) {
+            $conflicts[] = [
+                'protects' => ['protect12', 'protect13'],
+                'severity' => 'info',
+                'description' => 'protect12 dan protect13 keduanya menyentuh Application API. protect12 fokus ke Form Request + Middleware layer, protect13 fokus ke Sidebar hiding + Controller block. Bisa co-exist tapi mungkin redundant.',
+            ];
+        }
+
+        // KONFLIK 5: protect5 vs installbranding.sh (Branding)
+        // protect5: Inject branding footer ke admin.blade.php + app.blade.php
+        // installbranding.sh (standalone): Inject branding ke semua layout
+        // SOLVED: installbranding.sh sekarang aware terhadap protect5 — tidak akan double-branding
+        // Tidak perlu warning karena sudah di-handle di installbranding.sh
+
+        // KONFLIK 6: protect5 vs protect12 (Sidebar Nests vs Nodes)
+        // protect5: Sembunyikan menu Nests (PROTEKSI_NESTS_SIDEBAR)
+        // protect12: Sembunyikan menu Nodes (PROTEKSI_NODES_SIDEBAR)
+        // Sebenarnya Nests dan Nodes adalah menu BERBEDA di Pterodactyl, jadi ini BUKAN konflik
+        // Tidak perlu warning
+
+        return $conflicts;
+    }
+
+    /**
      * Halaman utama Protect Manager
      */
     public function index()
@@ -1145,10 +1217,14 @@ PHPJOB;
             session()->flash('success', '⏳ Bulk install sedang berjalan di background. Refresh halaman ini beberapa detik lagi untuk melihat hasilnya.');
         }
 
+        // Deteksi konflik antar proteksi
+        $conflicts = $this->detectConflicts($config);
+
         return view('admin.protect-manager', [
             'config' => $config,
             'protections' => $config['protections'],
             'bulkStatus' => $bulkStatus,
+            'conflicts' => $conflicts,
         ]);
     }
 
@@ -1810,6 +1886,23 @@ cat > "$VIEW_PATH" << 'VIEWEOF'
 @endif
 @if(session('output'))
     <div class="output-box">{{ session('output') }}</div>
+@endif
+
+{{-- Konflik Warning --}}
+@if(!empty($conflicts))
+    @foreach($conflicts as $conflict)
+    <div class="alert alert-custom" style="background: {{ $conflict['severity'] === 'warning' ? '#451a1a' : '#1a2f1a' }}; border: 1px solid {{ $conflict['severity'] === 'warning' ? '#dc2626' : '#22c55e' }};">
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <span style="font-size: 20px;">{{ $conflict['severity'] === 'warning' ? '⚠️' : 'ℹ️' }}</span>
+            <div>
+                <strong style="color: {{ $conflict['severity'] === 'warning' ? '#fca5a5' : '#86efac' }};">
+                    {{ $conflict['severity'] === 'warning' ? 'Konflik Terdeteksi' : 'Info Konflik' }}: {{ implode(' + ', $conflict['protects']) }}
+                </strong>
+                <p style="color: #94a3b8; margin: 4px 0 0; font-size: 13px;">{{ $conflict['description'] }}</p>
+            </div>
+        </div>
+    </div>
+    @endforeach
 @endif
 
 {{-- Header --}}
