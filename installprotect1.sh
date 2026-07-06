@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn Store}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 
 REMOTE_PATH="/var/www/pterodactyl/app/Services/Servers/ServerDeletionService.php"
 TIMESTAMP=$(date -u +"%Y-%m-%d-%H-%M-%S")
@@ -82,7 +82,7 @@ class ServerDeletionService
                 }
 
                 if ($ownerId !== $user->id) {
-                    throw new DisplayException('Akses ditolak: Anda hanya dapat menghapus server milik Anda sendiri @ 𝐏𝐑𝐎𝐓𝐄𝐂𝐓 𝐁𝐘 𝐃𝐀𝐍𝐙𝐗𝐍 𝐒𝐓𝐎𝐑𝐄.');
+                    throw new DisplayException('Akses ditolak: Anda hanya dapat menghapus server milik Anda sendiri @ 𝐏𝐑𝐎𝐓𝐄𝐂𝐓 𝐁𝐘 𝐉𝐇𝐎𝐍𝐀𝐋𝐄𝐘 𝐓𝐄𝐂𝐇.');
                 }
             }
             // jika $user->id === 1, lanjutkan (admin super)
@@ -124,8 +124,8 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 # Apply brand customization
-sed -i "s|Protect By DANZXN|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
-sed -i "s|DANZXN STORE|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|Protect By Danzxn|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|Danzxn Store|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
 sed -i "s|𝐏𝐑𝐎𝐓𝐄𝐂𝐓 𝐁𝐘 𝐃𝐀𝐍𝐙𝐗𝐍 𝐒𝐓𝐎𝐑𝐄|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
 
 echo "✅ Proteksi Anti Delete Server berhasil dipasang!"

@@ -8,8 +8,8 @@
 
 set -e
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn Store}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 
 PANEL_DIR="/var/www/pterodactyl"
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)

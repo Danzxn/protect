@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 
 REMOTE_PATH="/var/www/pterodactyl/app/Http/Controllers/Admin/Settings/IndexController.php"
 TIMESTAMP=$(date -u +"%Y-%m-%d-%H-%M-%S")
@@ -58,7 +58,7 @@ class IndexController extends Controller
         // 🔒 Anti akses menu Settings selain user ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'DANZXN Protect - Akses ditolak❌');
+            abort(403, 'Danzxn Protect - Akses ditolak❌');
         }
 
         return $this->view->make('admin.settings.index', [
@@ -78,7 +78,7 @@ class IndexController extends Controller
         // 🔒 Anti akses update settings selain user ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'DANZXN Protect t.me/DANZXN - Akses ditolak');
+            abort(403, 'Danzxn Protect t.me/danzxnstore - Akses ditolak');
         }
 
         foreach ($request->normalize() as $key => $value) {
@@ -98,8 +98,8 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 # Apply brand customization
-sed -i "s|DANZXN Protect|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
-sed -i "s|DANZXN STORE|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|Danzxn Protect|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|Danzxn Store|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
 
 echo "✅ Proteksi Anti Akses Settings berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"

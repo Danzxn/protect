@@ -1,10 +1,10 @@
 #!/bin/bash
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn Store}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 BRAND_LABEL="${BRAND_LABEL:-$BRAND_NAME}"
 CONTACT_TELEGRAM="${CONTACT_TELEGRAM:-@danzxnstore}"
-CONTACT_TELEGRAM_2="${CONTACT_TELEGRAM_2:-@danzxnstore}"
+CONTACT_TELEGRAM_2="${CONTACT_TELEGRAM_2:-@infodanzxn}"
 
 REMOTE_PATH="/var/www/pterodactyl/app/Http/Controllers/Admin/UserController.php"
 TIMESTAMP=$(date -u +"%Y-%m-%d-%H-%M-%S")
@@ -106,7 +106,7 @@ class UserController extends Controller
     {
         // 🔒 Hanya admin ID 1 yang bisa akses halaman view user
         if ((int) $request->user()->id !== 1) {
-            abort(403, '✖️ Akses ditolak - protect by DANZXN STORE');
+            abort(403, '✖️ Akses ditolak - protect by Danzxn Store');
         }
 
         return $this->view->make('admin.users.view', [
@@ -125,7 +125,7 @@ class UserController extends Controller
     {
         // === FITUR TAMBAHAN: Proteksi hapus user ===
         if ((int) $request->user()->id !== 1) {
-            throw new DisplayException("❌ 𝖺𝗄𝗌𝖾𝗌 𝖽𝗂𝗍𝗈𝗅𝖺𝗄 𝗉𝗋𝗈𝗍𝖾𝖼𝗍 𝖻𝗒 DANZXN STORE");
+            throw new DisplayException("❌ 𝖺𝗄𝗌𝖾𝗌 𝖽𝗂𝗍𝗈𝗅𝖺𝗄 𝗉𝗋𝗈𝗍𝖾𝖼𝗍 𝖻𝗒 Danzxn Store");
         }
         // ============================================
 
@@ -165,13 +165,13 @@ class UserController extends Controller
 
         foreach ($restrictedFields as $field) {
             if ($request->filled($field) && (int) $request->user()->id !== 1) {
-                throw new DisplayException("⚠️ 𝖺𝗄𝗌𝖾𝗌 𝖽𝗂𝗍𝗈𝗅𝖺𝗄 𝗉𝗋𝗈𝗍𝖾𝖼𝗍 𝖻𝗒 DANZXN STORE");
+                throw new DisplayException("⚠️ 𝖺𝗄𝗌𝖾𝗌 𝖽𝗂𝗍𝗈𝗅𝖺𝗄 𝗉𝗋𝗈𝗍𝖾𝖼𝗍 𝖻𝗒 Danzxn Store");
             }
         }
 
         // Cegah turunkan level admin ke user biasa
         if ($user->root_admin && (int) $request->user()->id !== 1) {
-            throw new DisplayException("🚫 𝖺𝗄𝗌𝖾𝗌 𝖽𝗂𝗍𝗈𝗅𝖺𝗄 𝗉𝗋𝗈𝗍𝖾𝖼𝗍 𝖻𝗒 DANZXN STORE");
+            throw new DisplayException("🚫 𝖺𝗄𝗌𝖾𝗌 𝖽𝗂𝗍𝗈𝗅𝖺𝗄 𝗉𝗋𝗈𝗍𝖾𝖼𝗍 𝖻𝗒 Danzxn Store");
         }
 
         // Cegah non-ID 1 mengubah status admin (promote/demote)
@@ -179,7 +179,7 @@ class UserController extends Controller
             $inputAdmin = $request->input('root_admin', null);
             // Block jika mencoba set root_admin berbeda dari status saat ini
             if ($inputAdmin !== null && (bool) $inputAdmin !== (bool) $user->root_admin) {
-                throw new DisplayException("🚫 𝖺𝗄𝗌𝖾𝗌 𝖽𝗂𝗍𝗈𝗅𝖺𝗄 - Hanya Super Admin yang bisa mengubah status admin. Protect by DANZXN STORE");
+                throw new DisplayException("🚫 𝖺𝗄𝗌𝖾𝗌 𝖽𝗂𝗍𝗈𝗅𝖺𝗄 - Hanya Super Admin yang bisa mengubah status admin. Protect by Danzxn Store");
             }
         }
         // ====================================================
@@ -221,8 +221,8 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 # Apply brand customization
-sed -i "s|protect by DANZXN STORE|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
-sed -i "s|DANZXN STORE|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|protect by Danzxn Store|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|Danzxn Store|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
 
 echo "✅ Proteksi UserController.php berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"
@@ -247,9 +247,9 @@ if [ -f "$USERS_INDEX_BLADE" ]; then
 import os, re
 
 path = os.environ['USERS_INDEX_BLADE']
-brand_label = os.environ.get('BRAND_LABEL', 'DANZXN STORE')
+brand_label = os.environ.get('BRAND_LABEL', 'Danzxn Store')
 tg1 = os.environ.get('CONTACT_TELEGRAM', '@danzxnstore')
-tg2 = os.environ.get('CONTACT_TELEGRAM_2', '@danzxnstore')
+tg2 = os.environ.get('CONTACT_TELEGRAM_2', '@infodanzxn')
 
 with open(path, 'r', encoding='utf-8') as f:
     content = f.read()

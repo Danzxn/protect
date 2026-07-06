@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn Store}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 
 REMOTE_PATH="/var/www/pterodactyl/app/Http/Controllers/Admin/Nodes/NodeController.php"
 TIMESTAMP=$(date -u +"%Y-%m-%d-%H-%M-%S")
@@ -47,7 +47,7 @@ class NodeController extends Controller
         // === 🔒 FITUR TAMBAHAN: Anti akses selain admin ID 1 ===
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, '🚫 Akses ditolak! Hanya admin ID 1 yang dapat membuka menu Nodes. ©Protect By DANZXN V2.3');
+            abort(403, '🚫 Akses ditolak! Hanya admin ID 1 yang dapat membuka menu Nodes. ©Protect By Danzxn V1.0');
         }
         // ======================================================
 
@@ -66,8 +66,8 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 # Apply brand customization
-sed -i "s|Protect By DANZXN|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
-sed -i "s|DANZXN STORE|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|Protect By Danzxn|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|Danzxn Store|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
 
 echo "✅ Proteksi Anti Akses Nodes berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"

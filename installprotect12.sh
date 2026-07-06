@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn Store}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 CONTACT_TELEGRAM="${CONTACT_TELEGRAM:-@danzxnstore}"
 
 TIMESTAMP=$(date -u +"%Y-%m-%d-%H-%M-%S")
@@ -63,7 +63,7 @@ while i < len(lines):
         
         new_lines.append("        // PROTEKSI_DANZXN: Hanya admin ID 1")
         new_lines.append("        if (!Auth::user() || (int) Auth::user()->id !== 1) {")
-        new_lines.append("            abort(403, 'Akses ditolak - protect by DANZXN STORE');")
+        new_lines.append("            abort(403, 'Akses ditolak - protect by danzxn Store');")
         new_lines.append("        }")
         
         if j > i:
@@ -202,7 +202,7 @@ while i < len(lines):
         
         new_lines.append("        // PROTEKSI_DANZXN: Hanya admin ID 1")
         new_lines.append("        if (!Auth::user() || (int) Auth::user()->id !== 1) {")
-        new_lines.append("            abort(403, 'Akses ditolak - protect by DANZXN STORE');")
+        new_lines.append("            abort(403, 'Akses ditolak - protect by Danzxn Store');")
         new_lines.append("        }")
         
         if j > i:
@@ -283,7 +283,7 @@ while i < len(lines):
         new_lines.append("        // PROTEKSI_DANZXN_ACCOUNT: Block ubah data admin ID 1")
         new_lines.append("        \$targetUser = \$request->user();")
         new_lines.append("        if ((int) \$targetUser->id === 1 && (!Auth::user() || (int) Auth::user()->id !== 1)) {")
-        new_lines.append("            abort(403, 'Akses ditolak - protect by DANZXN STORE');")
+        new_lines.append("            abort(403, 'Akses ditolak - protect by Danzxn Store');")
         new_lines.append("        }")
         
         if j > i:
@@ -355,7 +355,7 @@ if match:
         // PROTEKSI_DANZXN_FORMREQ: Block modifikasi user ID 1
         if (preg_match('#/api/application/users/1(?:\\\?|$|/)#', request()->getPathInfo())) {
             if (in_array(request()->method(), ['PATCH', 'PUT', 'DELETE'])) {
-                abort(403, 'Akses ditolak - protect by DANZXN STORE');
+                abort(403, 'Akses ditolak - protect by Danzxn Store');
             }
         }
 '''
@@ -377,7 +377,7 @@ else:
     {
         if (preg_match('#/api/application/users/1(?:\\\?|$|/)#', request()->getPathInfo())) {
             if (in_array(request()->method(), ['PATCH', 'PUT', 'DELETE'])) {
-                abort(403, 'Akses ditolak - protect by DANZXN STORE');
+                abort(403, 'Akses ditolak - protect by Danzxn Store');
             }
         }
         return true;
@@ -429,7 +429,7 @@ class ProtectAdminUser
 
         if (preg_match('#/api/application/users/1(?:\?|$|/)#', $path)) {
             if (in_array($request->method(), ['PATCH', 'PUT', 'DELETE', 'POST'])) {
-                abort(403, 'Akses ditolak - protect by DANZXN STORE');
+                abort(403, 'Akses ditolak - protect by Danzxn Store');
             }
         }
 
@@ -540,11 +540,11 @@ while i < len(lines):
         new_lines.append("        // PROTEKSI_DANZXN_APPUSER: Block akses API untuk admin ID 1")
         if 'User \$user' in line or (j > i and any('User \$user' in lines[k] for k in range(i, min(j+1, len(lines))))):
             new_lines.append("        if (isset(\$user) && (int) \$user->id === 1) {")
-            new_lines.append("            abort(403, 'Akses ditolak - protect by DANZXN STORE');")
+            new_lines.append("            abort(403, 'Akses ditolak - protect by Danzxn Store');")
             new_lines.append("        }")
         else:
             new_lines.append("        if (preg_match('#/users/1(\\\\?|\$|/|\\\\b)#', \$request->getPathInfo())) {")
-            new_lines.append("            abort(403, 'Akses ditolak - protect by DANZXN STORE');")
+            new_lines.append("            abort(403, 'Akses ditolak - protect by Danzxn Store');")
             new_lines.append("        }")
         
         if j > i:
@@ -645,7 +645,7 @@ while i < len(lines):
         new_lines.append("        // PROTEKSI_DANZXN_APIKEY: Block buat key atas nama User ID 1")
         new_lines.append("        $targetUserId = (int) ($request->input('user_id') ?? $request->input('user') ?? 0);")
         new_lines.append("        if ($targetUserId === 1 && (!Auth::user() || (int) Auth::user()->id !== 1)) {")
-        new_lines.append("            abort(403, 'Tidak bisa membuat API key atas nama User ID 1 - protect by DANZXN STORE');")
+        new_lines.append("            abort(403, 'Tidak bisa membuat API key atas nama User ID 1 - protect by Danzxn Store');")
         new_lines.append("        }")
         
         if j > i:
@@ -665,7 +665,7 @@ while i < len(lines):
         new_lines.append("            if ($key) {")
         new_lines.append("                $apiKey = \\Pterodactyl\\Models\\ApiKey::find($key);")
         new_lines.append("                if ($apiKey && (int) $apiKey->user_id === 1) {")
-        new_lines.append("                    abort(403, 'Tidak bisa menghapus API key milik User ID 1 - protect by DANZXN STORE');")
+        new_lines.append("                    abort(403, 'Tidak bisa menghapus API key milik User ID 1 - protect by Danzxn Store');")
         new_lines.append("                }")
         new_lines.append("            }")
         new_lines.append("        }")
@@ -935,7 +935,7 @@ while i < len(lines):
         
         new_lines.append("        // PROTEKSI_DANZXN_LOCATION: Hanya admin ID 1")
         new_lines.append("        if (!Auth::user() || (int) Auth::user()->id !== 1) {")
-        new_lines.append("            abort(403, 'Akses ditolak - protect by DANZXN STORE');")
+        new_lines.append("            abort(403, 'Akses ditolak - protect by Danzxn Store');")
         new_lines.append("        }")
         
         if j > i:
@@ -962,9 +962,9 @@ echo ""
 echo "🎨 Menerapkan kustomisasi brand..."
 for MODIFIED_FILE in "$CONTROLLER" "$NODE_LIST" "$ACCT_CTRL" "$APP_USER_CTRL" "$API_CTRL" "$MIDDLEWARE_FILE" "$LOC_CTRL"; do
   if [ -n "$MODIFIED_FILE" ] && [ -f "$MODIFIED_FILE" ]; then
-    sed -i "s|protect by DANZXN STORE|${BRAND_TEXT}|g" "$MODIFIED_FILE" 2>/dev/null || true
-    sed -i "s|Akses ditolak - protect by DANZXN STORE|${BRAND_TEXT} - Akses ditolak|g" "$MODIFIED_FILE" 2>/dev/null || true
-    sed -i "s|DANZXN STORE|${BRAND_NAME}|g" "$MODIFIED_FILE" 2>/dev/null || true
+    sed -i "s|protect by Danzxn Store|${BRAND_TEXT}|g" "$MODIFIED_FILE" 2>/dev/null || true
+    sed -i "s|Akses ditolak - protect by Danzxn Store|${BRAND_TEXT} - Akses ditolak|g" "$MODIFIED_FILE" 2>/dev/null || true
+    sed -i "s|Danzxn Store|${BRAND_NAME}|g" "$MODIFIED_FILE" 2>/dev/null || true
   fi
 done
 echo "✅ Brand customization diterapkan"

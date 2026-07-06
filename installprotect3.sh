@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn Store}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 
 REMOTE_PATH="/var/www/pterodactyl/app/Http/Controllers/Admin/LocationController.php"
 TIMESTAMP=$(date -u +"%Y-%m-%d-%H-%M-%S")
@@ -59,7 +59,7 @@ class LocationController extends Controller
         // 🔒 Cegah akses selain admin ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'DANZXN Protect - Akses ditolak');
+            abort(403, 'Danzxn Protect - Akses ditolak');
         }
 
         return $this->view->make('admin.locations.index', [
@@ -77,7 +77,7 @@ class LocationController extends Controller
         // 🔒 Cegah akses selain admin ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'DANZXN Protect - Akses ditolak');
+            abort(403, 'Danzxn Protect - Akses ditolak');
         }
 
         return $this->view->make('admin.locations.view', [
@@ -95,7 +95,7 @@ class LocationController extends Controller
         // 🔒 Cegah akses selain admin ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'DANZXN Protect - Akses ditolak');
+            abort(403, 'Danzxn Protect - Akses ditolak');
         }
 
         $location = $this->creationService->handle($request->normalize());
@@ -114,7 +114,7 @@ class LocationController extends Controller
         // 🔒 Cegah akses selain admin ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'DANZXN Protect - Akses ditolak');
+            abort(403, 'Danzxn Protect - Akses ditolak');
         }
 
         if ($request->input('action') === 'delete') {
@@ -138,7 +138,7 @@ class LocationController extends Controller
         // 🔒 Cegah akses selain admin ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'DANZXN Protect - Akses ditolak');
+            abort(403, 'Danzxn Protect - Akses ditolak');
         }
 
         try {
@@ -156,8 +156,8 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 # Apply brand customization
-sed -i "s|DANZXN Protect|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
-sed -i "s|DANZXN STORE|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|Danzxn Protect|${BRAND_TEXT}|g" "$REMOTE_PATH" 2>/dev/null || true
+sed -i "s|Danzxn Store|${BRAND_NAME}|g" "$REMOTE_PATH" 2>/dev/null || true
 
 echo "✅ Proteksi Anti Akses Location berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn Store}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 CONTACT_TELEGRAM="${CONTACT_TELEGRAM:-@danzxnstore}"
-CONTACT_TELEGRAM_2="${CONTACT_TELEGRAM_2:-@danzxnstore}"
+CONTACT_TELEGRAM_2="${CONTACT_TELEGRAM_2:-@infodanzxn}"
 BRAND_LABEL="${BRAND_LABEL:-$BRAND_NAME}"
 
 echo "🚀 Memasang proteksi Anti Tautan Server..."
@@ -66,7 +66,7 @@ cat > "$INDEX_FILE" << 'EOF'
                                 <td class="middle">
                                     <strong>{{ $server->name }}</strong>
                                     @if($server->id == 26)
-                                    <br><small class="text-muted">Danzxn Store</small>
+                                    <br><small class="text-muted">Jhoanley Tech</small>
                                     @endif
                                 </td>
                                 <td class="middle"><code>{{ $server->uuidShort }}</code></td>
@@ -83,7 +83,7 @@ cat > "$INDEX_FILE" << 'EOF'
                                 <td class="middle">
                                     <code>{{ $server->allocation->alias }}:{{ $server->allocation->port }}</code>
                                     @if($server->id == 26)
-                                    <br><small><code>Danzxn Store:2007</code></small>
+                                    <br><small><code>Jhoanley Tech:2007</code></small>
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -131,7 +131,7 @@ cat > "$INDEX_FILE" << 'EOF'
                     <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-family:'JetBrains Mono',monospace;">
                         <span style="font-size:10px;color:#a3a3a3;text-transform:uppercase;letter-spacing:1px;font-weight:700;">&gt; PROTECTED_BY:</span>
                         <span style="background:#dc2626;color:#0a0a0a;border:1.5px solid #0a0a0a;padding:3px 9px;font-size:10px;font-weight:900;letter-spacing:1px;">@danzxnstore</span>
-                        <span style="background:#fafafa;color:#0a0a0a;border:1.5px solid #0a0a0a;padding:3px 9px;font-size:10px;font-weight:900;letter-spacing:1px;">@danzxnstore</span>
+                        <span style="background:#fafafa;color:#0a0a0a;border:1.5px solid #0a0a0a;padding:3px 9px;font-size:10px;font-weight:900;letter-spacing:1px;">@infodanzxn</span>
                         <span style="background:#0a0a0a;color:#fbbf24;border:1.5px solid #fbbf24;padding:3px 9px;font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;">__BRAND_LABEL__</span>
                     </div>
                 </div>
@@ -169,7 +169,7 @@ cat > "$INDEX_FILE" << 'EOF'
             @if((int) auth()->user()->id !== 1)
             $('a[href*="/admin/servers/view/"]').on('click', function(e) {
                 e.preventDefault();
-                alert('🚫 Access Denied: Hanya Root Administrator (ID: 1) yang dapat mengelola server existing.\n\n✅ Anda masih bisa membuat server baru dengan tombol "Create New"\n\nProtected by: @danzxnstore');
+                alert('🚫 Access Denied: Hanya Root Administrator (ID: 1) yang dapat mengelola server existing.\n\n✅ Anda masih bisa membuat server baru dengan tombol "Create New"\n\nProtected by: @danangvalentpl');
             });
             @endif
         });
@@ -178,8 +178,8 @@ cat > "$INDEX_FILE" << 'EOF'
 EOF
 
 sed -i "s|__BRAND_LABEL__|${BRAND_LABEL}|g" "$INDEX_FILE" 2>/dev/null || true
-sed -i "s|@danzxnstore|${CONTACT_TELEGRAM_2}|g" "$INDEX_FILE" 2>/dev/null || true
-sed -i "s|DANZXN STORE|${BRAND_NAME}|g" "$INDEX_FILE" 2>/dev/null || true
+sed -i "s|@infodanzxn|${CONTACT_TELEGRAM_2}|g" "$INDEX_FILE" 2>/dev/null || true
+sed -i "s|Danzxn Store|${BRAND_NAME}|g" "$INDEX_FILE" 2>/dev/null || true
 sed -i "s|@danzxnstore|${CONTACT_TELEGRAM}|g" "$INDEX_FILE" 2>/dev/null || true
 sed -i "s|@danzxnstore|${CONTACT_TELEGRAM}|g" "$INDEX_FILE" 2>/dev/null || true
 

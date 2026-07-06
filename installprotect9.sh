@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn Store}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 
 REMOTE_PATH="/var/www/pterodactyl/app/Services/Servers/DetailsModificationService.php"
 TIMESTAMP=$(date -u +"%Y-%m-%d-%H-%M-%S")

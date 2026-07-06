@@ -4,8 +4,8 @@ set -e
 
 TIMESTAMP=$(date -u +"%Y-%m-%d-%H-%M-%S")
 
-BRAND_NAME="${BRAND_NAME:-DANZXN STORE}"
-BRAND_TEXT="${BRAND_TEXT:-Protect By DANZXN}"
+BRAND_NAME="${BRAND_NAME:-Danzxn Store}"
+BRAND_TEXT="${BRAND_TEXT:-Protect By Danzxn}"
 CONTACT_TELEGRAM="${CONTACT_TELEGRAM:-@danzxnstore}"
 BOT_LINK="${BOT_LINK:-@danzxnautovps_bot}"
 WELCOME_TITLE="${WELCOME_TITLE:-Welcome To Server $BRAND_NAME}"
@@ -234,7 +234,7 @@ while i < len(lines):
 
         new_lines.append("        // PROTEKSI_DANZXN: Hanya admin ID 1")
         new_lines.append("        if (!Auth::user() || (int) Auth::user()->id !== 1) {")
-        new_lines.append("            abort(403, 'Akses ditolak - protect by DANZXN STORE');")
+        new_lines.append("            abort(403, 'Akses ditolak - protect by Danzxn Store');")
         new_lines.append("        }")
 
         if j > i:
@@ -292,7 +292,7 @@ while i < len(lines):
 
         new_lines.append("        // PROTEKSI_DANZXN: Hanya admin ID 1")
         new_lines.append("        if (!Auth::user() || (int) Auth::user()->id !== 1) {")
-        new_lines.append("            abort(403, 'Akses ditolak - protect by DANZXN STORE');")
+        new_lines.append("            abort(403, 'Akses ditolak - protect by Danzxn Store');")
         new_lines.append("        }")
 
         if j > i:
@@ -632,7 +632,7 @@ else
 
   WELCOME_TEMP=$(mktemp)
   cat > "$WELCOME_TEMP" << WELCOME_EOF
-<!-- WELCOME_DANZXN: Welcome Banner -->
+<!-- WELCOME_DANNZXN: Welcome Banner -->
 <style>
   .danzxn-welcome {
     background: #0a0a0a;

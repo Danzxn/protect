@@ -126,13 +126,13 @@ write_bundled_hotfix_script "installprotect13.sh" 'IyEvYmluL2Jhc2gKIyA9PT09PT09P
 DEFAULT_CONFIG_TMP=$(mktemp)
 cat > "$DEFAULT_CONFIG_TMP" << 'CONFIGEOF'
 {
-    "brand_name": "DANZXN STORE",
-    "brand_text": "Protect By DANZXN",
+    "brand_name": "Danzxn Store",
+    "brand_text": "Protect By Danzxn Store ",
     "contact_telegram": "@danzxnstore",
-    "contact_telegram_2": "@danzxnstore",
-    "brand_label": "DANZXN STORE",
-    "bot_link": "@danzxnautovps_bot",
-    "welcome_title": "Welcome To Server DANZXN STORE",
+    "contact_telegram_2": "@infodanzxn",
+    "brand_label": "Danzxn Store",
+    "bot_link": "@upgradeuser_bot",
+    "welcome_title": "Welcome To Server Danzxn Store",
     "welcome_message": "Butuh panel legal yang anti mokad? langsung aja ke @danzxnautovps_bot. Jika ada kendala dan ada yang ingin di tanyakan hubungi @danzxnstore.",
     "protections": {
         "protect1": {
@@ -535,15 +535,15 @@ class ProtectManagerController extends Controller
         if (!File::exists($this->configPath)) {
             return [
                 'protections' => [],
-                'brand_name' => 'DANZXN STORE',
-                'brand_text' => 'Protect By DANZXN',
+                'brand_name' => 'Danzxn Store',
+                'brand_text' => 'Protect By Danzxn',
                 'contact_telegram' => '@danzxnstore',
-                'contact_telegram_2' => '@danzxnstore',
-                'brand_label' => 'DANZXN STORE',
+                'contact_telegram_2' => '@infodanzxn',
+                'brand_label' => 'Danzxn Store',
                 'bot_link' => '@danzxnautovps_bot',
-                'welcome_title' => 'Welcome To Server DANZXN STORE',
+                'welcome_title' => 'Welcome To Server Danzxn Store',
                 'welcome_message' => 'Butuh panel legal yang anti mokad? langsung aja ke @danzxnautovps_bot. Jika ada kendala dan ada yang ingin di tanyakan hubungi @danzxnstore.',
-                'panel_title' => 'DANZXN STORE',
+                'panel_title' => 'Danzxn Store',
                 'deny_msg_admin' => '',
                 'deny_msg_server' => '',
                 'deny_msg_file' => '',
@@ -770,15 +770,15 @@ SCRIPT_INSTALLPROTECT13_SH,
         $wrapperFile = $this->scriptsDir . '/run-' . basename($scriptFile, '.sh') . '-' . uniqid() . '.sh';
         $wrapperContent = "#!/bin/bash\n"
             . "set -e\n"
-            . 'export BRAND_NAME=' . escapeshellarg($config['brand_name'] ?? 'DANZXN STORE') . "\n"
-            . 'export BRAND_TEXT=' . escapeshellarg($config['brand_text'] ?? 'Protect By DANZXN') . "\n"
+            . 'export BRAND_NAME=' . escapeshellarg($config['brand_name'] ?? 'Danzxn Store') . "\n"
+            . 'export BRAND_TEXT=' . escapeshellarg($config['brand_text'] ?? 'Protect By Danzxn') . "\n"
             . 'export CONTACT_TELEGRAM=' . escapeshellarg($config['contact_telegram'] ?? '@danzxnstore') . "\n"
-            . 'export CONTACT_TELEGRAM_2=' . escapeshellarg($config['contact_telegram_2'] ?? '@danzxnstore') . "\n"
-            . 'export BRAND_LABEL=' . escapeshellarg($config['brand_label'] ?? ($config['brand_name'] ?? 'DANZXN STORE')) . "\n"
+            . 'export CONTACT_TELEGRAM_2=' . escapeshellarg($config['contact_telegram_2'] ?? '@infodanzxn') . "\n"
+            . 'export BRAND_LABEL=' . escapeshellarg($config['brand_label'] ?? ($config['brand_name'] ?? 'Danzxn Store')) . "\n"
             . 'export BOT_LINK=' . escapeshellarg($config['bot_link'] ?? '@danzxnautovps_bot') . "\n"
-            . 'export WELCOME_TITLE=' . escapeshellarg($config['welcome_title'] ?? 'Welcome To Server DANZXN STORE') . "\n"
+            . 'export WELCOME_TITLE=' . escapeshellarg($config['welcome_title'] ?? 'Welcome To Server Danzxn Store') . "\n"
             . 'export WELCOME_MESSAGE=' . escapeshellarg($config['welcome_message'] ?? '') . "\n"
-            . 'export PANEL_TITLE=' . escapeshellarg($config['panel_title'] ?? ($config['brand_name'] ?? 'DANZXN STORE')) . "\n"
+            . 'export PANEL_TITLE=' . escapeshellarg($config['panel_title'] ?? ($config['brand_name'] ?? 'Danzxn Tech')) . "\n"
             . 'export DENY_MSG_ADMIN=' . escapeshellarg($config['deny_msg_admin'] ?? '') . "\n"
             . 'export DENY_MSG_SERVER=' . escapeshellarg($config['deny_msg_server'] ?? '') . "\n"
             . 'export DENY_MSG_FILE=' . escapeshellarg($config['deny_msg_file'] ?? '') . "\n"
@@ -864,15 +864,15 @@ $runProtectedScript = function (string $scriptFile, array $config) use ($scripts
     $wrapperFile = $scriptsDir . '/run-' . basename($scriptFile, '.sh') . '-' . uniqid() . '.sh';
     $wrapperContent = "#!/bin/bash\n"
         . "set -e\n"
-        . 'export BRAND_NAME=' . escapeshellarg($config['brand_name'] ?? 'DANZXN STORE') . "\n"
-        . 'export BRAND_TEXT=' . escapeshellarg($config['brand_text'] ?? 'Protect By DANZXN') . "\n"
+        . 'export BRAND_NAME=' . escapeshellarg($config['brand_name'] ?? 'Danzxn Store') . "\n"
+        . 'export BRAND_TEXT=' . escapeshellarg($config['brand_text'] ?? 'Protect By Danzxn') . "\n"
         . 'export CONTACT_TELEGRAM=' . escapeshellarg($config['contact_telegram'] ?? '@danzxnstore') . "\n"
-        . 'export CONTACT_TELEGRAM_2=' . escapeshellarg($config['contact_telegram_2'] ?? '@danzxnstore') . "\n"
-        . 'export BRAND_LABEL=' . escapeshellarg($config['brand_label'] ?? ($config['brand_name'] ?? 'DANZXN STORE')) . "\n"
-        . 'export BOT_LINK=' . escapeshellarg($config['bot_link'] ?? '@danzxnautovps_bot') . "\n"
-        . 'export WELCOME_TITLE=' . escapeshellarg($config['welcome_title'] ?? 'Welcome To Server DANZXN STORE') . "\n"
+        . 'export CONTACT_TELEGRAM_2=' . escapeshellarg($config['contact_telegram_2'] ?? '@infodanzxn') . "\n"
+        . 'export BRAND_LABEL=' . escapeshellarg($config['brand_label'] ?? ($config['brand_name'] ?? 'Danzxn Store')) . "\n"
+        . 'export BOT_LINK=' . escapeshellarg($config['bot_link'] ?? '@upgradeuser_bot') . "\n"
+        . 'export WELCOME_TITLE=' . escapeshellarg($config['welcome_title'] ?? 'Welcome To Server Danzxn Store') . "\n"
         . 'export WELCOME_MESSAGE=' . escapeshellarg($config['welcome_message'] ?? '') . "\n"
-        . 'export PANEL_TITLE=' . escapeshellarg($config['panel_title'] ?? ($config['brand_name'] ?? 'DANZXN STORE')) . "\n"
+        . 'export PANEL_TITLE=' . escapeshellarg($config['panel_title'] ?? ($config['brand_name'] ?? 'Danzxn Store')) . "\n"
         . 'export DENY_MSG_ADMIN=' . escapeshellarg($config['deny_msg_admin'] ?? '') . "\n"
         . 'export DENY_MSG_SERVER=' . escapeshellarg($config['deny_msg_server'] ?? '') . "\n"
         . 'export DENY_MSG_FILE=' . escapeshellarg($config['deny_msg_file'] ?? '') . "\n"
@@ -1022,13 +1022,13 @@ PHPJOB;
 
             case 'protect3':
                 return $containsAny('app/Http/Controllers/Admin/LocationController.php', [
-                    'DANZXN Protect - Akses ditolak',
+                    'Danzxn Protect - Akses ditolak',
                 ]);
 
             case 'protect4':
                 return $containsAny('app/Http/Controllers/Admin/Nodes/NodeController.php', [
                     'membuka menu Nodes',
-                    '©Protect By DANZXN V2.3',
+                    '©Protect By Danzxn V1.0',
                 ]);
 
             case 'protect5':
@@ -1045,8 +1045,8 @@ PHPJOB;
 
             case 'protect6':
                 return $containsAny('app/Http/Controllers/Admin/Settings/IndexController.php', [
-                    'DANZXN Protect - Akses ditolak',
-                    'Protect By DANZXN',
+                    'Danzxn Protect - Akses ditolak',
+                    'Protect By Danzxn',
                     'Akses ditolak',
                     '$user->id !== 1',
                 ]);
@@ -1066,7 +1066,7 @@ PHPJOB;
             case 'protect9':
                 return $containsAny('app/Services/Servers/DetailsModificationService.php', [
                     'hanya admin utama yang bisa mengubah detail server',
-                    'Protect By DANZXN',
+                    'Protect By Danzxn',
                     'Akses ditolak',
                     '$user->id !== 1',
                 ]);
@@ -1083,7 +1083,7 @@ PHPJOB;
             case 'protect11':
                 return $containsAny('resources/views/admin/servers/index.blade.php', [
                     'Protected by: ',
-                    '@danzxnstore',
+                    '@danangvalentpl',
                 ]) || $containsAny('resources/views/admin/servers/view/index.blade.php', [
                     'BLUR PROTECTION FOR NON-ROOT ADMINS',
                     'backdrop-filter: blur(20px);',
@@ -1107,78 +1107,6 @@ PHPJOB;
         }
 
         return strpos(File::get($targetFile), $protection['marker']) !== false;
-    }
-
-    /**
-     * Deteksi konflik antar proteksi yang saling overlap.
-     * Mengembalikan array konflik: [ [protectA, protectB, deskripsi], ... ]
-     */
-    private function detectConflicts(array $config): array
-    {
-        $conflicts = [];
-        $protections = $config['protections'] ?? [];
-
-        // Helper: cek apakah proteksi di-enable
-        $isEnabled = function (string $key) use ($protections): bool {
-            return ($protections[$key]['enabled'] ?? false) === true;
-        };
-
-        // KONFLIK 1: protect3 vs protect12 (Locations)
-        // protect3: REPLACE seluruh LocationController (destructive)
-        // protect12 BAGIAN 5: Inject proteksi ke LocationController + sidebar
-        if ($isEnabled('protect3') && $isEnabled('protect12')) {
-            $conflicts[] = [
-                'protects' => ['protect3', 'protect12'],
-                'severity' => 'warning',
-                'description' => 'protect3 (Anti Akses Location) dan protect12 (Konsolidasi) keduanya memodifikasi LocationController. protect3 mengganti SELURUH file (destructive), protect12 hanya inject check. Rekomendasi: disable protect3, gunakan protect12 saja.',
-            ];
-        }
-
-        // KONFLIK 2: protect4 vs protect12 (Nodes)
-        // protect4: REPLACE seluruh NodeController (hanya menyisakan method index())
-        // protect12 BAGIAN 1: Inject proteksi ke NodeController, NodeViewController, + sidebar
-        if ($isEnabled('protect4') && $isEnabled('protect12')) {
-            $conflicts[] = [
-                'protects' => ['protect4', 'protect12'],
-                'severity' => 'warning',
-                'description' => 'protect4 (Anti Akses Nodes) dan protect12 (Konsolidasi) keduanya memodifikasi NodeController. protect4 mengganti SELURUH file (hanya menyisakan method index), protect12 inject ke semua method + sidebar. Rekomendasi: disable protect4, gunakan protect12 saja.',
-            ];
-        }
-
-        // KONFLIK 3: protect10 vs protect11 (Anti Tautan Server)
-        // Keduanya REPLACE resources/views/admin/servers/index.blade.php
-        if ($isEnabled('protect10') && $isEnabled('protect11')) {
-            $conflicts[] = [
-                'protects' => ['protect10', 'protect11'],
-                'severity' => 'warning',
-                'description' => 'protect10 (Anti Tautan v1) dan protect11 (Anti Tautan v2) keduanya mengganti file index.blade.php yang SAMA. Yang terakhir di-install akan menimpa sebelumnya. Rekomendasi: pilih salah satu (protect11 = versi terbaru).',
-            ];
-        }
-
-        // KONFLIK 4: protect12 vs protect13 (Application API - partial overlap)
-        // protect12 BAGIAN 3: Form Request + Middleware + Controller proteksi untuk API User
-        // protect13: Sidebar menu hiding + ApiController block + API UserController block
-        if ($isEnabled('protect12') && $isEnabled('protect13')) {
-            $conflicts[] = [
-                'protects' => ['protect12', 'protect13'],
-                'severity' => 'info',
-                'description' => 'protect12 dan protect13 keduanya menyentuh Application API. protect12 fokus ke Form Request + Middleware layer, protect13 fokus ke Sidebar hiding + Controller block. Bisa co-exist tapi mungkin redundant.',
-            ];
-        }
-
-        // KONFLIK 5: protect5 vs installbranding.sh (Branding)
-        // protect5: Inject branding footer ke admin.blade.php + app.blade.php
-        // installbranding.sh (standalone): Inject branding ke semua layout
-        // SOLVED: installbranding.sh sekarang aware terhadap protect5 — tidak akan double-branding
-        // Tidak perlu warning karena sudah di-handle di installbranding.sh
-
-        // KONFLIK 6: protect5 vs protect12 (Sidebar Nests vs Nodes)
-        // protect5: Sembunyikan menu Nests (PROTEKSI_NESTS_SIDEBAR)
-        // protect12: Sembunyikan menu Nodes (PROTEKSI_NODES_SIDEBAR)
-        // Sebenarnya Nests dan Nodes adalah menu BERBEDA di Pterodactyl, jadi ini BUKAN konflik
-        // Tidak perlu warning
-
-        return $conflicts;
     }
 
     /**
@@ -1217,14 +1145,10 @@ PHPJOB;
             session()->flash('success', '⏳ Bulk install sedang berjalan di background. Refresh halaman ini beberapa detik lagi untuk melihat hasilnya.');
         }
 
-        // Deteksi konflik antar proteksi
-        $conflicts = $this->detectConflicts($config);
-
         return view('admin.protect-manager', [
             'config' => $config,
             'protections' => $config['protections'],
             'bulkStatus' => $bulkStatus,
-            'conflicts' => $conflicts,
         ]);
     }
 
@@ -1426,8 +1350,8 @@ PHPJOB;
         $config['brand_name'] = $request->input('brand_name', $config['brand_name']);
         $config['brand_text'] = $request->input('brand_text', $config['brand_text']);
         $config['contact_telegram'] = $request->input('contact_telegram', $config['contact_telegram']);
-        $config['contact_telegram_2'] = $request->input('contact_telegram_2', $config['contact_telegram_2'] ?? '@danzxnstore');
-        $config['brand_label'] = $request->input('brand_label', $config['brand_label'] ?? ($config['brand_name'] ?? 'DANZXN STORE'));
+        $config['contact_telegram_2'] = $request->input('contact_telegram_2', $config['contact_telegram_2'] ?? '@infodanzxn');
+        $config['brand_label'] = $request->input('brand_label', $config['brand_label'] ?? ($config['brand_name'] ?? 'Danzxn Store'));
         $config['bot_link'] = $request->input('bot_link', $config['bot_link']);
         $config['welcome_title'] = $request->input('welcome_title', $config['welcome_title'] ?? '');
         $config['welcome_message'] = $request->input('welcome_message', $config['welcome_message'] ?? '');
@@ -1888,23 +1812,6 @@ cat > "$VIEW_PATH" << 'VIEWEOF'
     <div class="output-box">{{ session('output') }}</div>
 @endif
 
-{{-- Konflik Warning --}}
-@if(!empty($conflicts))
-    @foreach($conflicts as $conflict)
-    <div class="alert alert-custom" style="background: {{ $conflict['severity'] === 'warning' ? '#451a1a' : '#1a2f1a' }}; border: 1px solid {{ $conflict['severity'] === 'warning' ? '#dc2626' : '#22c55e' }};">
-        <div style="display: flex; align-items: flex-start; gap: 12px;">
-            <span style="font-size: 20px;">{{ $conflict['severity'] === 'warning' ? '⚠️' : 'ℹ️' }}</span>
-            <div>
-                <strong style="color: {{ $conflict['severity'] === 'warning' ? '#fca5a5' : '#86efac' }};">
-                    {{ $conflict['severity'] === 'warning' ? 'Konflik Terdeteksi' : 'Info Konflik' }}: {{ implode(' + ', $conflict['protects']) }}
-                </strong>
-                <p style="color: #94a3b8; margin: 4px 0 0; font-size: 13px;">{{ $conflict['description'] }}</p>
-            </div>
-        </div>
-    </div>
-    @endforeach
-@endif
-
 {{-- Header --}}
 <div class="protect-header">
     <h2>🛡️ Protect Manager</h2>
@@ -2015,19 +1922,19 @@ cat > "$VIEW_PATH" << 'VIEWEOF'
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="config-label">Nama Brand <span style="color:#64748b;font-weight:400;">(footer, title)</span></label>
-                        <input type="text" name="brand_name" value="{{ $config['brand_name'] ?? 'DANZXN STORE' }}" class="config-input" placeholder="DANZXN STORE">
+                        <input type="text" name="brand_name" value="{{ $config['brand_name'] ?? 'Danzxm Store' }}" class="config-input" placeholder="Danzxn Store">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="config-label">Teks Proteksi <span style="color:#64748b;font-weight:400;">(badge & pesan abort)</span></label>
-                        <input type="text" name="brand_text" value="{{ $config['brand_text'] ?? 'Protect By DANZXN' }}" class="config-input" placeholder="Protect By DANZXN">
+                        <input type="text" name="brand_text" value="{{ $config['brand_text'] ?? 'Protect By Danzxn' }}" class="config-input" placeholder="Protect By Danzxn">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="config-label">Judul Panel <span style="color:#64748b;font-weight:400;">(tag &lt;title&gt; browser)</span></label>
-                        <input type="text" name="panel_title" value="{{ $config['panel_title'] ?? ($config['brand_name'] ?? 'DANZXN STORE') }}" class="config-input" placeholder="Pterodactyl - Brand Anda">
+                        <input type="text" name="panel_title" value="{{ $config['panel_title'] ?? ($config['brand_name'] ?? 'Danzxn Store') }}" class="config-input" placeholder="Pterodactyl - Brand Anda">
                     </div>
                 </div>
             </div>
@@ -2047,19 +1954,19 @@ cat > "$VIEW_PATH" << 'VIEWEOF'
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="config-label">Username Telegram Admin 2 (Protected by)</label>
-                        <input type="text" name="contact_telegram_2" value="{{ $config['contact_telegram_2'] ?? '@danzxnstore' }}" class="config-input" placeholder="@adminkedua">
+                        <input type="text" name="contact_telegram_2" value="{{ $config['contact_telegram_2'] ?? '@infodanzxm' }}" class="config-input" placeholder="@adminkedua">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="config-label">Username Bot Telegram</label>
-                        <input type="text" name="bot_link" value="{{ $config['bot_link'] ?? '@danzxnautovps_bot' }}" class="config-input" placeholder="@botanda">
+                        <input type="text" name="bot_link" value="{{ $config['bot_link'] ?? '@upgradeuser_bot' }}" class="config-input" placeholder="@botanda">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="config-label">Label Brand (Protected by)</label>
-                        <input type="text" name="brand_label" value="{{ $config['brand_label'] ?? ($config['brand_name'] ?? 'DANZXN STORE') }}" class="config-input" placeholder="Nama brand untuk tag Protected by">
+                        <input type="text" name="brand_label" value="{{ $config['brand_label'] ?? ($config['brand_name'] ?? 'Danzxn Store') }}" class="config-input" placeholder="Nama brand untuk tag Protected by">
                         <small style="color:#64748b;font-size:11px;">Teks pada label biru di banner "Protected by" halaman daftar server. Bisa beda dengan Nama Brand utama.</small>
                     </div>
                 </div>
@@ -2074,13 +1981,13 @@ cat > "$VIEW_PATH" << 'VIEWEOF'
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="config-label">Judul Banner</label>
-                        <input type="text" name="welcome_title" value="{{ $config['welcome_title'] ?? 'Welcome To Server DANZXN STORE' }}" class="config-input" placeholder="Welcome To Server ...">
+                        <input type="text" name="welcome_title" value="{{ $config['welcome_title'] ?? 'Welcome To Server Danzxn Store' }}" class="config-input" placeholder="Welcome To Server ...">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="config-label">Pesan Banner</label>
-                        <textarea name="welcome_message" class="config-input" rows="3" placeholder="Pesan welcome untuk client...">{{ $config['welcome_message'] ?? 'Butuh panel legal yang anti mokad? langsung aja ke @danzxnautovps_bot. Jika ada kendala dan ada yang ingin di tanyakan hubungi @danzxnstore.' }}</textarea>
+                        <textarea name="welcome_message" class="config-input" rows="3" placeholder="Pesan welcome untuk client...">{{ $config['welcome_message'] ?? 'Butuh panel legal yang anti mokad? langsung aja ke @upgradeuser_bot. Jika ada kendala dan ada yang ingin di tanyakan hubungi @danangvalentp.' }}</textarea>
                     </div>
                 </div>
             </div>
